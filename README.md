@@ -53,75 +53,40 @@ API is now running at: http://127.0.0.1:8000/
 🛠 Technologies Used
 
 Django 5.1.5
-
 Django REST Framework
-
 Googletrans (for translation)
-
 CKEditor (for rich text support)
-
 Pytest (for testing)
 
 ---
 
 ⚡ API Endpoints
-🔹 Fetch All FAQs
-GET /api/faqs/
-json
+
+GET      -  /api/faqs/             ->  Get all FAQs
+GET      -  /api/faqs/?lang=hi     ->  Get FAQs in Hindi
+GET      -  /api/faqs/?lang=bn     ->  Get FAQs in Bengali
+POST     -  /api/faqs/             ->  Create a new FAQ
+PUT      -  /api/faqs/{id}/        ->  Update an FAQ
+DELETE   -  /api/faqs/{id}/        ->  Delete an FAQ
+
+Example Request:
+POST /api/faqs/
 {
-  "id": 1,
-  "question": "What is Django?",
-  "answer": "Django is a web framework.",
-  "language": "en"
+    "question": "What is Django?",
+    "answer": "Django is a web framework",
+    "language": "en"
 }
-
-
-🔹 Create a New FAQ POST -- /api/faqs/
-json
+Example Response:
 {
-  "question": "What is Python?",
-  "answer": "Python is a programming language.",
-  "language": "en"
+    "id": 1,
+    "question": "What is Django?",
+    "answer": "Django is a web framework",
+    "language": "en",
+    "question_hi": "Django क्या है?",
+    "question_bn": "জ্যাঙ্গো কী?",
+    "answer_hi": "Django एक वेब फ्रेमवर्क है",
+    "answer_bn": "জ্যাঙ্গো একটি ওয়েব ফ্রেমওয়ার্ক"
 }
-
-
-🔹 Get FAQs in a Specific Language -- GET/api/faqs/?lang=hi`
-json
-{
-  "question": "Python क्या है?",
-  "answer": "Python एक प्रोग्रामिंग भाषा है।"
-}
-
-
-🔹 Update an FAQ**
-PUT  /api/faqs/{id}/
-
-🔹 Delete an FAQ
-DELETE /api/faqs/{id}/
-
----
-
-🛑 Redis Caching (⚠️ Known Issue)
-Redis caching was implemented to store FAQ responses for faster retrieval, but it is currently facing issues.
-
-#Steps Taken:
-1. Django Redis Cache Framework** was configured.
-2. FAQs were stored in Redis** for improved performance.
-3. Issue: Cache data isn't persisting or being retrieved as expected.
-
-Temporary Workaround:
-- The API still functions without Redis**, but responses may be slightly slower.
-- The issue is under debugging and will be resolved in future updates.
-
-Running Redis (if debugging further):
-
-brew install redis  # MacOS
-sudo apt install redis  # Ubuntu
-redis-server
-
-To flush the cache:
-redis-cli FLUSHALL
-
 
 ---
 
@@ -130,50 +95,46 @@ Run Unit Tests
 
 pytest faq/tests/ -v
 
-✅ All tests should pass (except for potential Redis-dependent tests).
-
----
-
-📜 Contribution Guidelines
-1. Fork the repository
-2. create a feature branch
-
-git checkout -b feat/your-feature
-
-3. Follow commit message conventions**
-
-git commit -m "feat: Add new API endpoint for FAQs"
-
-4. Submit a pull request
+✅ All tests passed 
 
 ---
 
 📝 Version Control & Git Best Practices
-We follow **conventional commit messages**:
-- feat: New feature
-- fix: Bug fix
-- docs: Documentation update
-- refactor: Code improvement without feature change
-- test: Unit test additions
+📌 Contribution Guidelines
 
-Example commits:
+Fork the Repository
+Create a New Branch (feat-new-feature)
+Commit Changes
 
-git commit -m "feat: Add multilingual FAQ model"
-git commit -m "fix: Improve translation caching"
-git commit -m "docs: Update README with API examples"
+git commit -m "feat: Add a new feature"
+Push & Create a PR
 
 
 ---
 
-📌 Future Improvements
-- ✅ Fix Redis caching for faster API responses
-- ✅ Add Docker & Deployment Instructions
+⚠️ Limitations & Next Steps
+Redis Caching is not implemented yet.
+Docker Support is not available currently.
+
+Running Redis (if debugging further):
+brew install redis  # MacOS
+sudo apt install redis  # Ubuntu
+redis-server
+
+To flush the cache:
+redis-cli FLUSHALL
+
+---
+
+🎯 Future Improvements
+
+✅ Implement Redis Caching for Performance
+✅ Add Docker Support for Easy Deployment
 
 
 ---
 
-📞 Contact
-For queries, contact: jagratmalviya99@gmail.com
+👨‍💻 Author: Jagrattt23
 
 Happy coding! 🚀
 
