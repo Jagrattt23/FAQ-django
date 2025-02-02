@@ -45,8 +45,22 @@ DEBUG=True
 
 python manage.py migrate
 python manage.py runserver
-
 API is now running at: http://127.0.0.1:8000/
+
+
+---
+
+🛠 Technologies Used
+
+Django 5.1.5
+
+Django REST Framework
+
+Googletrans (for translation)
+
+CKEditor (for rich text support)
+
+Pytest (for testing)
 
 ---
 
