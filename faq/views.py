@@ -20,7 +20,7 @@ class FAQListCreateView(generics.ListCreateAPIView):
 
         if cached_faqs:
             print(f"✅ Serving from Redis Cache: {cache_key}")
-            return json.loads(cached_faqs)  # Serve cached data
+            return json.loads(cached_faqs)  
         
         print(f"⚠️ Fetching from Database, Storing in Redis: {cache_key}")
         faqs = FAQ.objects.all()
@@ -31,14 +31,14 @@ class FAQListCreateView(generics.ListCreateAPIView):
             if lang == 'hi':
                 formatted_faqs.append({
                     "id": faq.id,
-                    "question": faq.question_hi or faq.question,  # Use Hindi or fallback to English
+                    "question": faq.question_hi or faq.question, 
                     "answer": faq.answer_hi or faq.answer,
                     "language": "hi"
                 })
             elif lang == 'bn':
                 formatted_faqs.append({
                     "id": faq.id,
-                    "question": faq.question_bn or faq.question,  # Use Bengali or fallback to English
+                    "question": faq.question_bn or faq.question, 
                     "answer": faq.answer_bn or faq.answer,
                     "language": "bn"
                 })

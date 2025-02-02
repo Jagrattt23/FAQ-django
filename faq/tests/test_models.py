@@ -21,7 +21,7 @@ def test_create_faq():
 def test_get_faqs():
     client = APIClient()
     FAQ.objects.all().delete()
-    cache.clear()  # ✅ Clear cache before testing
+    cache.clear()  
     
     FAQ.objects.create(question="What is Django?", answer="Django is a web framework", language="en")
 
@@ -35,7 +35,7 @@ def test_update_faq():
     client = APIClient()
     faq = FAQ.objects.create(question="What is Django?", answer="Django is a web framework", language="en")
 
-    # ✅ Define `data` before using it
+
     data = {
         "question": "Updated Django?",
         "answer": "Updated Answer",
