@@ -1,0 +1,21 @@
+# Virtual environment
+venv/
+env/
+
+# Django migrations, cache, and database
+__pycache__/
+*.sqlite3
+*.log
+db.sqlite3
+*.swp
+
+# IDE and system files
+.vscode/
+.DS_Store
+
+# Pytest cache
+.pytest_cache/
+
+# Static and media files
+staticfiles/
+media/
